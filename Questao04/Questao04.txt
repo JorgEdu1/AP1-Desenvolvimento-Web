@@ -1,0 +1,51 @@
+Props é uma funcionalidade que podemos fazer componentes herdar dados de outros componentes
+
+por exemplo:
+
+         A
+        / \
+       B   C
+
+Onde A tem a informacao que o backgroundColor é red, ele pode fazer o B e o C herdar essa mesma informacao passando isso por Props
+Mas imagine uma arvore maior:
+
+         A
+        / \
+       B   C
+      / \
+     D   E 
+
+eu quero que os backgroundColor sejam dessa forma:
+
+A = red
+B = black
+C = black
+D = red
+E = red
+
+e entenda que eu quero fazer os filhos de B herdarem de A a informacao que o backgroundColor é red, so que o B sendo sendo black,
+dessa forma teriamos que fazer o B herdar essa informacao de A sem usar ela, e mandar para os filhos dele, dessa forma D e E poderiam
+herdar tranquilamente, nao parece ser ruim, mas imagine essa arvore 10 vezes maior, onde o no pai tem uma informacao que um no folha 
+deseja herdar, imagine isso sendo passado por varios nós e ficando sem uso nenhum, so para chegar ao filho, isso é props drilling, e isso
+pode ser evitado com useContext, ou contextos.
+
+vamos usar o mesmo exemplo:
+
+         A
+        / \
+       B   C
+      / \
+     D   E
+
+eu quero que os backgroundColor sejam dessa forma:
+
+A = red
+B = black
+C = black
+D = red
+E = red
+
+dessa vez nao vamos passar para o B para ele repassar a informacao sem usar, dessa vez vamos fazer o A mandar essa informacao para um arquivo
+de contexto, onde la dentro ele usa o hook useContext, que vai salvar isso, e se eu precisar disso no D ou E, eu simplesmente incluo o arquivo
+de contexto e consumo esse contexto, imagine que agora eu posso "herdar" essa informacao do no raiz da arvore de qualquer parte dela, ate nas folhas,
+isso resolveria o problema de props drilling.
